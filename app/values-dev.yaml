@@ -1,0 +1,16 @@
+namespace: app-namespace
+name: nginx
+replicaCount: 2
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+deployment:
+  containerPort: 80
+  repository: nginx
+  tag: latest
+hpa:
+  name: nginx-hpa
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 50
