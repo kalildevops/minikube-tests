@@ -14,7 +14,13 @@ spec:
         app: {{ .Values.name }}
     spec:
       containers:
-      - name: {{ .Chart.Name }}
-        image: "{{ .Values.deployment.repository }}:{{ .Values.deployment.tag }}"
+      - name: {{ .Values.name }}
+        image: {{ .Values.deployment.acr }}/{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
         ports:
-        - containerPort: {{ .Values.deployment.containerPort }}
+          - containerPort: {{ .Values.deployment.containerPort }}
+        env:
+          - name: MONGODB_CONNECTION_STRING
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.deployment.secretName }}
+                key: connection_string

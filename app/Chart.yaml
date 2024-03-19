@@ -1,6 +1,6 @@
-name: nginx-hpa-chart
+name: app
 version: 0.1.0
-description: A Helm chart for deploying NGINX-based application with HPA
+description: quick local test
 maintainers:
   - name: kalil.devops
     email: kalil.devops@gmail.com
